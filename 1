@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+struct work {
+    char name[20];
+    int days_of_the_week[6];
+};
+
+int main() {
+    struct work workers[5];
+    int sum[5] = {0};
+    int sum1 = 0;
+    int max_worker_index = 0;
+    //int max_day = 0;
+
+    for (int i = 0; i < 3; i++) {       //ввод имён
+        printf("Enter name %d: ", i+1);
+        scanf("%s", workers[i].name);
+
+        printf("Enter number of created per day %d:\n", i+1);   //ввожу  детали
+        for (int j = 0; j < 6; j++) {
+            printf("Day %d: ", j+1);
+            scanf("%d", &workers[i].days_of_the_week[j]);
+            sum[i] += workers[i].days_of_the_week[j];
+        }
+
+        if (sum[i] > sum1) {     //считаю сумму
+            sum1 = sum[i];
+            max_worker_index = i;
+        }
+    }
+
+    printf("\nThe sum of each worker:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%s: %d\n", workers[i].name, sum[i]);
+    }
+
+    printf("\nThe best worker: %s\n", workers[max_worker_index].name);
+
+    //for (int i = 0; i < 6; i++) {   //лучший день
+        //int max_day_of_the_week = 0;
+       // if (workers[max_worker_index].days_of_the_week[i] >max_day_of_the_week) {
+              //  max_day_of_the_week = workers[max_worker_index].days_of_the_week[i];
+              //  max_day = i+1;
+           // }
+       // }
+
+
+   // printf("Worker's best day: Day %d\n", max_day);
+
+    return 0;
+}
